@@ -54,8 +54,12 @@ namespace MIssion13
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {               
-                endpoints.MapDefaultControllerRoute();
+            {
+            endpoints.MapControllerRoute(
+                name: "team",
+                pattern: "{teamID}", new { controller = "Home", action = "Index" });
+
+            endpoints.MapDefaultControllerRoute();
             });
         }
     }

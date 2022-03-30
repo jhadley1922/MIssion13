@@ -12,6 +12,6 @@
     {
         <a asp-controller="Home" asp-action="Index" asp-route-teamID="@t.TeamID"
             class="btn btn-sm btn-outline-secondary text-center m-1 
-            @(ViewBag.SelectedTeam == t.TeamID ? "btn-primary" : "btn-outline-secondary")">@t.TeamName</a>
+            @(ViewBag.SelectedTeam == t.TeamID.ToString() ? "btn-primary" : "btn-outline-secondary")">@t.TeamName</a>
     }
 </div>
