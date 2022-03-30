@@ -19,10 +19,22 @@ namespace MIssion13.Controllers
         }
 
         // Home page with contact info table
-        public IActionResult Index()
+        public IActionResult Index(int teamid)
         {
             // Get list of bowlers from the db
             var bowlers = _context.Bowlers.ToList();
+            ViewBag.TeamID = teamid;
+
+            if (teamid == 0)
+            {
+                ViewBag.TeamID = 0;
+                return View(bowlers);
+            } 
+            else
+            {
+                ViewBag.teamName = _context.Teams.FirstOrDefault(x => x.TeamID == teamid);
+                bowlers = _context.Bowlers.Where(x => x.TeamID == teamid).ToList();
+            };
 
             return View(bowlers);
         }
@@ -90,9 +102,9 @@ namespace MIssion13.Controllers
         [HttpGet]
         public IActionResult Delete(int bowlerid)
         {
-            var movie = _context.Bowlers.Single(x => x.BowlerID == bowlerid);
+            var bowler = _context.Bowlers.Single(x => x.BowlerID == bowlerid);
 
-            return RedirectToAction("index");
+            return View(bowler);
         }
 
         [HttpPost]
