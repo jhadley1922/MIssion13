@@ -1,0 +1,17 @@
+﻿@{
+}
+
+@model List<Team>
+
+<div class="container-fluid">
+    <!-- Button to reset the filters and display the full list of teams -->
+    <a asp-controller="Home" asp-action="Index" asp-route-teamID="" class="btn btn-sm btn-primary text-center m-1">All Teams</a>
+
+    <!-- Dynamically creates buttons for each of the team names. Can be clicked on to filter by that team -->
+    @foreach (Team t in Model)
+    {
+        <a asp-controller="Home" asp-action="Index" asp-route-teamID="@t.TeamID"
+            class="btn btn-sm btn-outline-secondary text-center m-1 
+            @(ViewBag.SelectedTeam == t.TeamID ? "btn-primary" : "btn-outline-secondary")">@t.TeamName</a>
+    }
+</div>

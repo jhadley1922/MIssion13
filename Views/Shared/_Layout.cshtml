@@ -29,15 +29,40 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+        <!--Shows the team filters-->
+        <div class="row">
+            <div class="col-2">
+                <h5>Filter by Team:</h5>
+            </div>
+            <div>
+                <vc:teams></vc:teams>
+            </div>
+        </div>
+
+        <!-- Displays the team name header -->
+        <div class="row m-2 justify-content-center">
+            @if (ViewBag.teamName != null)
+            {
+                <h1 class="display-4">@ViewBag.teamName.TeamName</h1>
+            }
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - MIssion13 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - MIssion13
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
